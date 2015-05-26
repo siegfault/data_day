@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20150526041236) do
   create_table "activities", force: :cascade do |t|
     t.integer "user_id"
     t.text    "name"
+    t.text    "key_bind"
   end
 
   add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree

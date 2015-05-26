@@ -4,4 +4,39 @@
   <% else %>
     No current action. Hit (a) to begin an action.
   <% end %>
+  <% if current_user.activities.any? %>
+    Available Activities:
+    <table>
+      <tr>
+	<th>Activity</th>
+	<th>Key Bind</th>
+      </tr>
+      <% current_user.activities.each do |activity| %>
+	<tr>
+	  <td><%= activity.name %></td>
+	  <td><%= activity.name.first %></td>
+	</tr>
+      <% end %>
+    </table>
+  <% end %>
+  <%= link_to 'Create more activities', new_activity_path %>
 </div>
+<% if current_user.actions.any? %>
+  <div>
+    <table>
+      <tr>
+	<th>Action</th>
+	<th>Start</th>
+	<th>End</th>
+      </tr>
+      <% current_user.actions.preload(:activities).ordered.last(5).each do |activity| %>
+	<tr>
+	  <td><%= action.name %></td>
+	  <td><%= action.begin_at %></td>
+	  <td><%= action.end_at %></td>
+	</tr>
+      <% end %>
+    </table>
+  </div>
+<% end %>
+

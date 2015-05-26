@@ -7,5 +7,6 @@ Rails.application.routes.draw do
 
   resources :actions, only: [:index, :new, :create] do
   end
+  resources :activities, only: [:new, :create]
   resources :users, only: [:new, :create]
 end
