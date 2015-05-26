@@ -5,8 +5,15 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true, format: /@/
   validates :password, length: { in: 6..72 }, confirmation: true
 
+  has_many :actions
+  has_many :activities
+
   def self.authenticate(username_or_email:, password:)
     user_by_username_or_email(username_or_email).authenticate(password) 
+  end
+
+  def current_action
+    actions.find_by(end_at: nil)
   end
 
   private

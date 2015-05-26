@@ -1,3 +1,7 @@
 <div>
-  Welcome!
+  <% if current_user.current_action %>
+    Current Action: <%= current_user.current_action.name %>
+  <% else %>
+    No current action. Hit (a) to begin an action.
+  <% end %>
 </div>
