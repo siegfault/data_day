@@ -1,20 +1,20 @@
 <div>
   <% if current_user.current_action %>
-    Current Action: <%= current_user.current_action.name %>
+    Current Action: <%= current_user.current_action.activity.name %>
   <% else %>
-    No current action. Hit (a) to begin an action.
+    No current action. Hit (b) to begin an action.
   <% end %>
-  <% if current_user.activities.any? %>
+  <% if current_activities.any? %>
     Available Activities:
     <table>
       <tr>
 	<th>Activity</th>
 	<th>Key Bind</th>
       </tr>
-      <% current_user.activities.each do |activity| %>
+      <% current_activities.each do |activity| %>
 	<tr>
 	  <td><%= activity.name %></td>
-	  <td><%= activity.name.first %></td>
+	  <td><%= activity.key_bind %></td>
 	</tr>
       <% end %>
     </table>
@@ -29,10 +29,10 @@
 	<th>Start</th>
 	<th>End</th>
       </tr>
-      <% current_user.actions.preload(:activities).ordered.last(5).each do |activity| %>
+      <% current_user.actions.preload(:activity).ordered.limit(5).each do |action| %>
 	<tr>
 	  <td><%= action.name %></td>
-	  <td><%= action.begin_at %></td>
+	  <td><%= action.start_at %></td>
 	  <td><%= action.end_at %></td>
 	</tr>
       <% end %>
@@ -40,3 +40,25 @@
   </div>
 <% end %>
 
+<script>
+  $( document ).ready(function() {
+    <% current_activities.each do |activity| %>
+      Mousetrap.bind('b <%= activity.key_bind %>', function() {
+        $.post(
+          '<%= actions_path %>',
+          { activity_id: <%= activity.id  %>, "authenticity_token": "<%= form_authenticity_token %>" }
+        ).success(function() {
+          location.reload();
+	}) ;
+      });
+    <% end %>
+    Mousetrap.bind('e', function() {
+      $.post(
+        '<%= end_actions_path %>',
+        { authenticity_token: '<%= form_authenticity_token %>'
+      }).success(function() {
+        location.reload();
+      });
+    });
+  });
+</script>

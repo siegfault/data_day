@@ -5,7 +5,8 @@ Rails.application.routes.draw do
 
   root 'actions#index'
 
-  resources :actions, only: [:index, :new, :create] do
+  resources :actions, only: [:index, :create] do
+    post :end, on: :collection
   end
   resources :activities, only: [:new, :create]
   resources :users, only: [:new, :create]
