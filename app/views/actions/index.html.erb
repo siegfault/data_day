@@ -40,6 +40,19 @@
   </div>
 <% end %>
 
+<br />
+<div>
+  Total Time spent on activities:
+  <table>
+    <% current_activities.preload(:actions).each do |activity| %>
+      <tr>
+        <td><%= activity.name %></td>
+        <td><%= distance_of_time_in_words(activity.total_length_of_time) %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
 <script>
   $( document ).ready(function() {
     <% current_activities.each do |activity| %>

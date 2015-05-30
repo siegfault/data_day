@@ -3,6 +3,7 @@ class Action < ActiveRecord::Base
   belongs_to :activity
 
   scope :ordered, -> { order(start_at: :desc) }
+  scope :completed, -> { where.not(end_at: nil) }
   
   def name
     activity.name
@@ -10,6 +11,10 @@ class Action < ActiveRecord::Base
 
   def end
     update(end_at: Time.now)
+  end
+
+  def length
+    end_at - start_at
   end
 end
 
