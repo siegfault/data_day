@@ -2,9 +2,7 @@ class Activity < ActiveRecord::Base
   belongs_to :user
   has_many :actions
 
-  AVAILABLE_KEYBINDS = %w(a b)
-
-  validates :key_bind, inclusion: { in: AVAILABLE_KEYBINDS }, presence: true, uniqueness: true
+  validates :key_bind, inclusion: { in: a..z }, presence: true, uniqueness: { scope: :user_id }
 
   def total_length_of_time
     actions.completed.map(&:length).sum
