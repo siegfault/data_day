@@ -14,7 +14,11 @@ class Action < ActiveRecord::Base
   end
 
   def length
-    end_at - start_at
+    if end_at
+      end_at - start_at
+    else
+      Time.now - start_at
+    end
   end
 end
 
