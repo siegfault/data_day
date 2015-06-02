@@ -1,60 +1,57 @@
+<div class="btn-group pull-right" role="group">
+  <%= link_to(new_activity_path, class: 'btn btn-default') do %>
+    <%= icon_for(:add) %>
+    Add New Activity
+  <% end %>
+</div>
 <div>
   <% if current_user.current_action %>
-    Current Action: <%= current_user.current_action.activity.name %>
+    <h3>Currently doing: <span class="label label-default"><%= current_user.current_action.name %></span></h3>
   <% else %>
-    No current action. Hit (b) to begin an action.
+    <h3>No current action. Hit (b) and then a keybind to begin an action.<h3>
   <% end %>
   <% if current_activities.any? %>
-    Available Activities:
-    <table>
-      <tr>
-	<th>Activity</th>
-	<th>Key Bind</th>
-      </tr>
-      <% current_activities.each do |activity| %>
-	<tr>
-	  <td><%= activity.name %></td>
-	  <td><%= activity.key_bind %></td>
-	</tr>
-      <% end %>
-    </table>
+    <br />
+    <h4>Available Keybinds/Activities:</h4>
+    <% current_activities.in_groups_of(3, false) do |group| %>
+      <div class='row'>
+        <% group.each do |activity| %>
+	  <div class="col-md-4"><%= badge_for(value: activity.key_bind) %> <%= activity.name %></div>
+        <% end %>
+      </div>
+    <% end %>
   <% end %>
-  <%= link_to 'Create more activities', new_activity_path %>
 </div>
 <% if current_user.actions.any? %>
-  <div>
-    <table>
+  <br />
+  <h4>Last 5 Actions:</h4>
+  <table class='table table-hover'>
+    <tr>
+      <th>Action</th>
+      <th>Length of Time</th>
+    </tr>
+    <% current_user.actions.preload(:activity).ordered.limit(5).each do |action| %>
       <tr>
-	<th>Action</th>
-	<th>Start</th>
-	<th>End</th>
-      </tr>
-      <% current_user.actions.preload(:activity).ordered.limit(5).each do |action| %>
-	<tr>
-	  <td><%= action.name %></td>
-	  <td><%= action.start_at %></td>
-	  <td><%= action.end_at %></td>
-	</tr>
-      <% end %>
-    </table>
-  </div>
-<% end %>
-
-<br />
-<div>
-  Total Time spent on activities:
-  <table>
-    <% current_activities.preload(:actions).each do |activity| %>
-      <tr>
-        <td><%= activity.name %></td>
-        <td><%= distance_of_time_in_words(activity.total_length_of_time) %></td>
+	<td><%= action.name %></td>
+	<td><%= distance_of_time_in_words(action.length) %></td>
       </tr>
     <% end %>
   </table>
-</div>
+<% end %>
+
+<br />
+<h4>Total Time spent on activities:</h4>
+<table class='table table-hover'>
+  <% current_activities.preload(:actions).each do |activity| %>
+    <tr>
+      <td><%= activity.name %></td>
+      <td><%= distance_of_time_in_words(activity.total_length_of_time) %></td>
+    </tr>
+  <% end %>
+</table>
 
 <script>
-  $( document ).ready(function() {
+  $( window ).load(function() {
     <% current_activities.each do |activity| %>
       Mousetrap.bind('b <%= activity.key_bind %>', function() {
         $.post(

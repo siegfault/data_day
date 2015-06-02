@@ -14,3 +14,14 @@
  *= require_tree .
  *= require_self
  */
+
+.navbar-header {
+  img {
+    max-height: 35px;
+  }
+
+  .tag-line {
+    padding-left: 20px;
+  }
+}
+
