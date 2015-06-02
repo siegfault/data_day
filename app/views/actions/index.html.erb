@@ -4,6 +4,7 @@
     Add New Activity
   <% end %>
 </div>
+
 <div>
   <% if current_user.current_action %>
     <h3>Currently doing: <span class="label label-default"><%= current_user.current_action.name %></span></h3>
@@ -22,6 +23,7 @@
     <% end %>
   <% end %>
 </div>
+
 <% if current_user.actions.any? %>
   <br />
   <h4>Last 5 Actions:</h4>
@@ -72,3 +74,4 @@
     });
   });
 </script>
+
