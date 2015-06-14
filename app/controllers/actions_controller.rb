@@ -12,6 +12,15 @@ class ActionsController < ApplicationController
     end
   end
 
+  def edit
+    @action = current_user.actions.find(params[:id])
+  end
+
+  def update
+    current_user.actions.find(params[:id]).update(update_params)
+    redirect_to actions_path
+  end
+
   def end
     if current_action.end
       head :ok
@@ -27,6 +36,10 @@ class ActionsController < ApplicationController
     else
       action.save
     end
+  end
+
+  def update_params
+    params.require(:act).permit(:start_at, :end_at)
   end
 end
 
