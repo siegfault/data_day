@@ -1,9 +1,9 @@
 <%= form_for(@action, as: :act) do |f| %>
   <%= f.label :start_at %>:
-  <%= f.datetime_select :start_at %><br />
+  <%= f.datetime_select :start_at, ampm: true %><br />
 
   <%= f.label :end_at %>:
-  <%= f.datetime_select :end_at %><br />
+  <%= f.datetime_select :end_at, ampm: true %><br />
 
   <%= f.submit %>
 <% end %>
