@@ -6,11 +6,6 @@
 </div>
 
 <div>
-  <% if current_user.current_action %>
-    <h3>Currently doing: <span class="label label-default"><%= current_user.current_action.name %></span></h3>
-  <% else %>
-    <h3>No current action. Hit (b) and then a keybind to begin an action.<h3>
-  <% end %>
   <% if current_activities.any? %>
     <br />
     <h4>Available Keybinds/Activities:</h4>
