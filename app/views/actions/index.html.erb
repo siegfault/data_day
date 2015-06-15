@@ -58,6 +58,7 @@
 
 <% timeline_data = current_user.actions.group_by{|a| a.start_at.beginning_of_day } %>
 <% timeline_data.each do |day, actions| %>
+  <h4><%= day %></h4>
   <%= timeline(actions.map {|a| [a.name, a.start_at, a.end_at ]}) %>
 <% end %>
 
