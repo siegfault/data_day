@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   resources :actions, only: [:index, :create, :edit, :update, :destroy] do
     post :end, on: :collection
   end
+
   resources :activities, only: [:new, :create]
+
   resources :users, only: [:new, :create]
+
+  resources :reports, only: :index
 end
