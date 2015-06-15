@@ -4,7 +4,7 @@ class ActionsController < ApplicationController
 
   def create
     activity = current_user.activities.find(params[:activity_id])
-    action = current_user.actions.new(activity: activity, start_at: Time.now)
+    action = current_user.actions.new(activity: activity)
     if can_switch_action?(activity: activity, action: action)
       head :ok
     else
@@ -41,7 +41,7 @@ class ActionsController < ApplicationController
   private
   def can_switch_action?(action:, activity:)
     if current_action
-      current_action.activity != activity && current_action.end && action.save
+      current_action.activity != activity && current_action.end && action.update(start_at: Time.now)
     else
       action.save
     end
