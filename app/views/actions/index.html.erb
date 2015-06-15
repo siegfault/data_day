@@ -7,7 +7,6 @@
 
 <div>
   <% if current_activities.any? %>
-    <br />
     <h4>Available Keybinds/Activities:</h4>
     <% current_activities.in_groups_of(3, false) do |group| %>
       <div class='row'>
@@ -41,25 +40,5 @@
 <% end %>
 
 <script>
-  $( window ).load(function() {
-    <% current_activities.each do |activity| %>
-      Mousetrap.bind('b <%= activity.key_bind %>', function() {
-        $.post(
-          '<%= actions_path %>',
-          { activity_id: <%= activity.id  %>, "authenticity_token": "<%= form_authenticity_token %>" }
-        ).success(function() {
-          location.reload();
-	}) ;
-      });
-    <% end %>
-    Mousetrap.bind('e', function() {
-      $.post(
-        '<%= end_actions_path %>',
-        { authenticity_token: '<%= form_authenticity_token %>'
-      }).success(function() {
-        location.reload();
-      });
-    });
-  });
 </script>
 

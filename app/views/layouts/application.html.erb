@@ -8,7 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
@@ -27,6 +27,30 @@
   <body>
     <!-- Mousetrap -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mousetrap/1.4.6/mousetrap.js"></script>
+
+    <script>
+      $( window ).load(function() {
+	<% current_activities.each do |activity| %>
+	  Mousetrap.bind('b <%= activity.key_bind %>', function() {
+	    $.post(
+	      '<%= actions_path %>',
+	      { activity_id: <%= activity.id  %>, "authenticity_token": "<%= form_authenticity_token %>" }
+	    ).success(function() {
+	      location.reload();
+	    }) ;
+	  });
+	<% end %>
+	Mousetrap.bind('e', function() {
+	  $.post(
+	    '<%= end_actions_path %>',
+	    { authenticity_token: '<%= form_authenticity_token %>' }
+	  ).success(function() {
+	    location.reload();
+	  });
+	});
+      });
+    </script>
+
     <nav class="navbar navbar-default navbar-static-top">
       <div class="container-fluid">
         <div class="navbar-header">
