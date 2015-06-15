@@ -21,6 +21,15 @@ class ActionsController < ApplicationController
     redirect_to actions_path
   end
 
+  def destroy
+    if current_user.actions.find(params[:id]).destroy
+      redirect_to actions_path
+    else
+      flash[:error] = "Could not be destroyed."
+      redirect_to actions_path
+    end
+  end
+
   def end
     if current_action.end
       head :ok
