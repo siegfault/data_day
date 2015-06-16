@@ -10,4 +10,7 @@ class NullUser
   def activities
     Activity.none
   end
+
+  def current_action
+  end
 end
