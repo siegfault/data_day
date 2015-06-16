@@ -19,7 +19,6 @@ class User < ActiveRecord::Base
   private
   def self.user_by_username_or_email(username_or_email)
     User.find_by(email: username_or_email) ||
-      User.find_by(username: username_or_email) ||
-      NullUser.new
+      User.find_by(username: username_or_email)
   end
 end
