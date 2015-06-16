@@ -6,4 +6,8 @@ class NullUser
   def authenticate(*)
     false
   end
+
+  def activities
+    Activity.none
+  end
 end
