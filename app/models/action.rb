@@ -4,9 +4,13 @@ class Action < ActiveRecord::Base
 
   scope :ordered, -> { order(start_at: :desc) }
   scope :completed, -> { where.not(end_at: nil) }
-  
+
   def name
     activity.name
+  end
+
+  def start
+    update(start_at: Time.now)
   end
 
   def end
@@ -14,7 +18,7 @@ class Action < ActiveRecord::Base
   end
 
   def length
-    if end_at.present?
+    if end_at
       end_at - start_at
     else
       Time.now - start_at

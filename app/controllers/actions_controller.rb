@@ -41,9 +41,9 @@ class ActionsController < ApplicationController
   private
   def can_switch_action?(action:, activity:)
     if current_action
-      current_action.activity != activity && current_action.end && action.update(start_at: Time.now)
+      current_action.activity != activity && current_action.end && action.start
     else
-      action.save
+      action.start
     end
   end
 
