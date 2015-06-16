@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :activities
 
   def self.authenticate(username_or_email:, password:)
-    user_by_username_or_email(username_or_email).authenticate(password) 
+    user_by_username_or_email(username_or_email).authenticate(password)
   end
 
   def current_action
