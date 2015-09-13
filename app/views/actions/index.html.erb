@@ -6,9 +6,9 @@
 </div>
 
 <div>
-  <% if current_activities.any? %>
+  <% if @activities.any? %>
     <h4>Available Activities (Click to Activate/Deactivate)</h4>
-    <% current_activities.in_groups_of(3, false) do |group| %>
+    <% @activities.in_groups_of(3, false) do |group| %>
       <div class='row'>
         <% group.each do |activity| %>
           <div class='col-md-4'>
