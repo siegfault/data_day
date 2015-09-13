@@ -16,7 +16,7 @@ module ApplicationHelper
   end
 
   def tabs
-    content_tag(:ul, class: 'nav nav-pills nav-justified') do
+    content_tag(:ul, class: 'nav nav-tabs nav-justified') do
       home_tab + reports_tab
     end
   end
