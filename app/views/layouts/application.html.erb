@@ -30,24 +30,25 @@
 
     <script>
       $( window ).load(function() {
-	<% current_activities.each do |activity| %>
-	  Mousetrap.bind('b <%= activity.key_bind %>', function() {
-	    $.post(
-	      '<%= actions_path %>',
-	      { activity_id: <%= activity.id  %>, "authenticity_token": "<%= form_authenticity_token %>" }
-	    ).success(function() {
-	      location.reload();
-	    }) ;
-	  });
-	<% end %>
-	Mousetrap.bind('e', function() {
-	  $.post(
-	    '<%= end_actions_path %>',
-	    { authenticity_token: '<%= form_authenticity_token %>' }
-	  ).success(function() {
-	    location.reload();
-	  });
-	});
+        <% current_activities.each do |activity| %>
+          Mousetrap.bind('b <%= activity.key_bind %>', function() {
+            $.post(
+              '<%= actions_path %>',
+              { activity_id: <%= activity.id  %>, "authenticity_token": "<%= form_authenticity_token %>" }
+            ).success(function() {
+              location.reload();
+            }) ;
+          });
+        <% end %>
+
+        Mousetrap.bind('e', function() {
+          $.post(
+            '<%= end_actions_path %>',
+            { authenticity_token: '<%= form_authenticity_token %>' }
+          ).success(function() {
+            location.reload();
+          });
+        });
       });
     </script>
 
