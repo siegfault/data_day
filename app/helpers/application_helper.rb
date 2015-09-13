@@ -4,13 +4,15 @@ module ApplicationHelper
   end
 
   def label_for(activity:)
-    label = content_tag(:span, activity.name, class: 'label label-default')
-
     if activity.in_progress?
-      link_to(label, end_actions_path, method: :post)
+      label_class = 'label label-primary'
+      path = end_actions_path
     else
-      link_to(label, actions_path(activity_id: activity.id), method: :post)
+      label_class = 'label label-default'
+      path = actions_path(activity_id: activity.id)
     end
+
+    link_to(content_tag(:span, activity.name, class: label_class), path, method: :post)
   end
 
   def tabs
