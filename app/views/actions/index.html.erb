@@ -1,4 +1,4 @@
-<div class="btn-group pull-right" role="group">
+<div class='btn-group pull-right' role='group'>
   <%= link_to(new_activity_path, class: 'btn btn-default') do %>
     <%= icon_for(:add) %>
     Add New Activity
@@ -11,8 +11,8 @@
     <% current_activities.in_groups_of(3, false) do |group| %>
       <div class='row'>
         <% group.each do |activity| %>
-          <div class="col-md-4">
-            <%= badge_for(value: activity.key_bind) %> <%= activity.name %>
+          <div class='col-md-4'>
+            <%= badge_for(activity: activity) %>
           </div>
         <% end %>
       </div>

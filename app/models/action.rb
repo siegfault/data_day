@@ -4,6 +4,7 @@ class Action < ActiveRecord::Base
 
   scope :ordered, -> { order(start_at: :desc) }
   scope :completed, -> { where.not(end_at: nil) }
+  scope :not_completed, -> { where(end_at: nil) }
 
   def name
     activity.name

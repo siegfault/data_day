@@ -15,5 +15,9 @@ class Activity < ActiveRecord::Base
       0
     end.round(2)
   end
+
+  def in_progress?
+    actions.not_completed.any?
+  end
 end
 

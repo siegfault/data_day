@@ -7,9 +7,10 @@ class ActionsController < ApplicationController
     activity = current_user.activities.find(params[:activity_id])
     action = current_user.actions.new(activity: activity)
     if can_switch_action?(activity: activity, action: action)
-      head :ok
+      redirect_to actions_path
     else
-      render status: :bad_request
+      flash[:error] = 'Could not be started.'
+      redirect_to actions_path
     end
   end
 
@@ -26,16 +27,17 @@ class ActionsController < ApplicationController
     if current_user.actions.find(params[:id]).destroy
       redirect_to actions_path
     else
-      flash[:error] = "Could not be destroyed."
+      flash[:error] = 'Could not be destroyed.'
       redirect_to actions_path
     end
   end
 
   def end
     if current_action.end
-      head :ok
+      redirect_to actions_path
     else
-      render status: :bad_request
+      flash[:error] = 'Could not be ended.'
+      redirect_to actions_path
     end
   end
 
