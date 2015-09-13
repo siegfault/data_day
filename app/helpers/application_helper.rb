@@ -6,7 +6,7 @@ module ApplicationHelper
   def label_for(activity:)
     if activity.in_progress?
       label_class = 'label label-primary'
-      path = end_actions_path
+      path = action_end_path(activity.actions.incomplete.first)
     else
       label_class = 'label label-default'
       path = actions_path(activity_id: activity.id)
@@ -16,7 +16,7 @@ module ApplicationHelper
   end
 
   def tabs
-    content_tag(:ul, class: 'nav nav-pills nav-justified') do
+    content_tag(:ul, class: 'nav nav-tabs nav-justified') do
       home_tab + reports_tab
     end
   end

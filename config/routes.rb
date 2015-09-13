@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   root 'actions#index'
 
   resources :actions, only: [:index, :create, :edit, :update, :destroy] do
-    post :end, on: :collection
+    post :end
   end
 
   resources :activities, only: [:new, :create]

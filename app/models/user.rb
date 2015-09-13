@@ -12,10 +12,6 @@ class User < ActiveRecord::Base
     user_by_username_or_email(username_or_email).authenticate(password)
   end
 
-  def current_action
-    actions.find_by(end_at: nil)
-  end
-
   private
   def self.user_by_username_or_email(username_or_email)
     User.find_by(email: username_or_email) ||

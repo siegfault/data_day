@@ -4,6 +4,8 @@ class Activity < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: { scope: :user_id }
 
+  scope :ordered, -> { order("LOWER(activities.name)") }
+
   def total_length_of_time
     actions.complete.map(&:length).sum
   end
