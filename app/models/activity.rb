@@ -13,7 +13,7 @@ class Activity < ActiveRecord::Base
       total_length_of_time.to_f * 100 / total
     else
       0
-    end.round(2)
+    end.round(precision)
   end
 
   def in_progress?
