@@ -5,8 +5,8 @@
   <% end %>
 </div>
 
-<div>
-  <% if @activities.any? %>
+<% if @activities.any? %>
+  <div>
     <h4>Available Activities (Click to Activate/Deactivate)</h4>
     <% @activities.in_groups_of(3, false) do |group| %>
       <div class='row'>
@@ -17,8 +17,8 @@
         <% end %>
       </div>
     <% end %>
-  <% end %>
-</div>
+  </div>
+<% end %>
 
 <% if current_user.actions.any? %>
   <br />
