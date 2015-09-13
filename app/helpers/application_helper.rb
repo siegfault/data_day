@@ -6,7 +6,7 @@ module ApplicationHelper
   def label_for(activity:)
     if activity.in_progress?
       label_class = 'label label-primary'
-      path = end_actions_path
+      path = action_end_path(activity.actions.incomplete.first)
     else
       label_class = 'label label-default'
       path = actions_path(activity_id: activity.id)

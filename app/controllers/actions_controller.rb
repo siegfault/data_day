@@ -7,7 +7,7 @@ class ActionsController < ApplicationController
   def create
     activity = current_user.activities.find(params[:activity_id])
     action = current_user.actions.new(activity: activity)
-    if can_switch_action?(activity: activity, action: action)
+    if action.save && action.start
       redirect_to actions_path
     else
       flash[:error] = 'Could not be started.'
@@ -34,7 +34,8 @@ class ActionsController < ApplicationController
   end
 
   def end
-    if current_action.end
+    action = current_user.actions.find(params[:action_id])
+    if action.end
       redirect_to actions_path
     else
       flash[:error] = 'Could not be ended.'
@@ -43,14 +44,6 @@ class ActionsController < ApplicationController
   end
 
   private
-  def can_switch_action?(action:, activity:)
-    if current_action
-      current_action.activity != activity && current_action.end && action.start
-    else
-      action.start
-    end
-  end
-
   def update_params
     params.require(:act).permit(:start_at, :end_at)
   end
