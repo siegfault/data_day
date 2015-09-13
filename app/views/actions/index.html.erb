@@ -7,7 +7,7 @@
 
 <div>
   <% if current_activities.any? %>
-    <h4>Available Keybinds/Activities:</h4>
+    <h4>Available Activities (Click to Activate/Deactivate)</h4>
     <% current_activities.in_groups_of(3, false) do |group| %>
       <div class='row'>
         <% group.each do |activity| %>
