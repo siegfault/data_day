@@ -18,9 +18,6 @@ gem 'coffee-rails', '~> 4.1.0'
 # Create beautiful Javascript charts with one line of Ruby
 gem 'chartkick'
 
-# Key bind handlers
-gem 'mousetrap-rails'
-
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks

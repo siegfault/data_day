@@ -2,10 +2,10 @@ class Activity < ActiveRecord::Base
   belongs_to :user
   has_many :actions
 
-  validates :key_bind, inclusion: { in: 'a'.upto('z').to_a }, presence: true, uniqueness: { scope: :user_id }
+  validates :name, presence: true, uniqueness: { scope: :user_id }
 
   def total_length_of_time
-    actions.completed.map(&:length).sum
+    actions.complete.map(&:length).sum
   end
 
   def percent_of(total:, precision: 2)
@@ -13,7 +13,11 @@ class Activity < ActiveRecord::Base
       total_length_of_time.to_f * 100 / total
     else
       0
-    end.round(2)
+    end.round(precision)
+  end
+
+  def in_progress?
+    actions.incomplete.any?
   end
 end
 

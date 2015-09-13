@@ -14,10 +14,7 @@ class ActivitiesController < ApplicationController
 
   private
   def create_params
-    params.require(:activity).permit(
-      :name,
-      :key_bind
-    )
+    params.require(:activity).permit(:name)
   end
 end
 

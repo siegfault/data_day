@@ -3,8 +3,16 @@ module ApplicationHelper
     Icon.new(icon_name: icon_name).render
   end
 
-  def badge_for(value:)
-    content_tag(:span, value, class: 'badge')
+  def label_for(activity:)
+    if activity.in_progress?
+      label_class = 'label label-primary'
+      path = end_actions_path
+    else
+      label_class = 'label label-default'
+      path = actions_path(activity_id: activity.id)
+    end
+
+    link_to(content_tag(:span, activity.name, class: label_class), path, method: :post)
   end
 
   def tabs
