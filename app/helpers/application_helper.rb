@@ -3,13 +3,13 @@ module ApplicationHelper
     Icon.new(icon_name: icon_name).render
   end
 
-  def badge_for(activity:)
-    badge = content_tag(:span, activity.name, class: 'badge')
+  def label_for(activity:)
+    label = content_tag(:span, activity.name, class: 'label label-default')
 
     if activity.in_progress?
-      link_to(badge, end_actions_path, method: :post)
+      link_to(label, end_actions_path, method: :post)
     else
-      link_to(badge, actions_path(activity_id: activity.id), method: :post)
+      link_to(label, actions_path(activity_id: activity.id), method: :post)
     end
   end
 
