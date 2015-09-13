@@ -1,5 +1,6 @@
 class ActionsController < ApplicationController
   def index
+    @actions = current_user.actions.preload(:activity).ordered.limit(5)
   end
 
   def create

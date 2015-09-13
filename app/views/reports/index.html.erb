@@ -1,15 +1,20 @@
 <h4>Total Time spent on activities:</h4>
 <table class='table table-hover'>
-  <% current_activities.preload(:actions).each do |activity| %>
+  <tr>
+    <th>Activity</th>
+    <th>Total Time</th>
+    <th>Percentage of Time</th>
+  </tr>
+  <% @activities.each do |activity| %>
     <tr>
       <td><%= activity.name %></td>
       <td><%= distance_of_time_in_words(activity.total_length_of_time) %></td>
+      <td><%= "#{ activity.percent_of(total: @total_activities_time) }%" %></td>
     </tr>
   <% end %>
 </table>
 
-<% timeline_data = current_user.actions.completed.ordered.group_by{|a| a.start_at.beginning_of_day } %>
-<% timeline_data.each do |day, actions| %>
+<% @timeline_data.each do |day, actions| %>
   <h4><%= day %></h4>
   <%= timeline(actions.map {|a| [a.name, a.start_at, a.end_at ]}) %>
 <% end %>
