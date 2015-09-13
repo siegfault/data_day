@@ -5,7 +5,7 @@ class Activity < ActiveRecord::Base
   validates :name, presence: true, uniqueness: { scope: :user_id }
 
   def total_length_of_time
-    actions.completed.map(&:length).sum
+    actions.complete.map(&:length).sum
   end
 
   def percent_of(total:, precision: 2)
@@ -17,7 +17,7 @@ class Activity < ActiveRecord::Base
   end
 
   def in_progress?
-    actions.not_completed.any?
+    actions.incomplete.any?
   end
 end
 

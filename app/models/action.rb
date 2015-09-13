@@ -3,8 +3,8 @@ class Action < ActiveRecord::Base
   belongs_to :activity
 
   scope :ordered, -> { order(start_at: :desc) }
-  scope :completed, -> { where.not(end_at: nil) }
-  scope :not_completed, -> { where(end_at: nil) }
+  scope :complete, -> { where.not(end_at: nil) }
+  scope :incomplete, -> { where(end_at: nil) }
 
   def name
     activity.name
