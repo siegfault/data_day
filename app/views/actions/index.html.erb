@@ -30,7 +30,7 @@
       <th>Action</th>
       <th>Length of Time</th>
     </tr>
-    <% current_user.actions.preload(:activity).completed.ordered.limit(5).each do |action| %>
+    <% @actions.each do |action| %>
       <tr>
         <td><%= link_to(icon_for(:edit), edit_action_path(action)) %></td>
         <td><%= link_to(icon_for(:trash), action, method: :delete) %></td>
