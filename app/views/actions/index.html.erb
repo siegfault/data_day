@@ -11,7 +11,9 @@
     <% current_activities.in_groups_of(3, false) do |group| %>
       <div class='row'>
         <% group.each do |activity| %>
-	  <div class="col-md-4"><%= badge_for(value: activity.key_bind) %> <%= activity.name %></div>
+          <div class="col-md-4">
+            <%= badge_for(value: activity.key_bind) %> <%= activity.name %>
+          </div>
         <% end %>
       </div>
     <% end %>
@@ -30,10 +32,10 @@
     </tr>
     <% current_user.actions.preload(:activity).completed.ordered.limit(5).each do |action| %>
       <tr>
-	<td><%= link_to(icon_for(:edit), edit_action_path(action)) %></td>
-	<td><%= link_to(icon_for(:trash), action, method: :delete) %></td>
-	<td><%= action.name %></td>
-	<td><%= distance_of_time_in_words(action.length) %></td>
+        <td><%= link_to(icon_for(:edit), edit_action_path(action)) %></td>
+        <td><%= link_to(icon_for(:trash), action, method: :delete) %></td>
+        <td><%= action.name %></td>
+        <td><%= distance_of_time_in_words(action.length) %></td>
       </tr>
     <% end %>
   </table>
