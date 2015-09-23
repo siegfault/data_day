@@ -8,10 +8,8 @@ class ReportsController < ApplicationController
   private
   def actions_from_params
     @_actions_from_params ||= current_user.actions.
-      ending_after(params[:ending_after]).
       ending_before(params[:ending_before]).
       starting_after(params[:starting_after]).
-      starting_before(params[:starting_before]).
       complete.
       ordered.
       preload(:activity)
