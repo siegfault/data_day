@@ -10,14 +10,6 @@ class Activity < ActiveRecord::Base
     actions.complete.map(&:length).sum
   end
 
-  def percent_of(total:, precision: 2)
-    if total > 0
-      total_length_of_time.to_f * 100 / total
-    else
-      0
-    end.round(precision)
-  end
-
   def in_progress?
     actions.incomplete.any?
   end

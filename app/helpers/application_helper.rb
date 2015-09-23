@@ -21,6 +21,10 @@ module ApplicationHelper
     end
   end
 
+  def formatted_percentage(amount:, total:, precision: 2)
+    "#{raw_percentage(amount: amount, total: total).round(precision)}%"
+  end
+
   private
   def home_tab
     nav_link('Home', actions_path)
@@ -35,6 +39,14 @@ module ApplicationHelper
 
     content_tag(:li, role: 'presentation', class: class_name) do
       link_to(text, path)
+    end
+  end
+
+  def raw_percentage(amount:, total:)
+    if total > 0
+      amount * 100.0 / total
+    else
+      0
     end
   end
 end

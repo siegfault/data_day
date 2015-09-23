@@ -5,11 +5,12 @@
     <th>Total Time</th>
     <th>Percentage of Time</th>
   </tr>
-  <% @activities.each do |activity| %>
+  <% @actions_grouped_by_activity.each do |activity, actions| %>
+    <% action_length = actions.map(&:length).sum %>
     <tr>
       <td><%= activity.name %></td>
-      <td><%= distance_of_time_in_words(activity.total_length_of_time) %></td>
-      <td><%= "#{ activity.percent_of(total: @total_activities_time) }%" %></td>
+      <td><%= distance_of_time_in_words(action_length) %></td>
+      <td><%= formatted_percentage(amount: action_length, total: @total_activities_time) %></td>
     </tr>
   <% end %>
 </table>

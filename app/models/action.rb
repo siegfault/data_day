@@ -6,6 +6,11 @@ class Action < ActiveRecord::Base
   scope :complete, -> { where.not(end_at: nil) }
   scope :incomplete, -> { where(end_at: nil) }
 
+  scope :ending_after,    ->(time) { where('end_at   > ?', DateTime.parse(time)) if time.present? }
+  scope :ending_before,   ->(time) { where('end_at   < ?', DateTime.parse(time)) if time.present? }
+  scope :starting_after,  ->(time) { where('start_at > ?', DateTime.parse(time)) if time.present? }
+  scope :starting_before, ->(time) { where('start_at < ?', DateTime.parse(time)) if time.present? }
+
   def name
     activity.name
   end
