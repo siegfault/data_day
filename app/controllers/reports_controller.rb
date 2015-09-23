@@ -11,6 +11,8 @@ class ReportsController < ApplicationController
       ending_before(params[:ending_before]).
       starting_after(params[:starting_after]).
       complete.
+      joins(:activity).
+      order('activities.name').
       ordered.
       preload(:activity)
   end
