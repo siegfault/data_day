@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
-  get 'sessions/login'
-  post 'sessions/login_attempt'
-  get 'sessions/logout'
-
   root 'actions#index'
+
+  resources :sessions, only: [:create, :new] do
+    collection do
+      get :logout
+      delete :destroy
+    end
+  end
+
+  get 'auth/google_oauth2/callback', controller: :sessions, action: :create
 
   resources :actions, only: [:index, :create, :edit, :update, :destroy] do
     post :end
