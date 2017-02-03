@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   resources :activities, only: [:new, :create]
 
-  resources :users, only: [:new, :create]
+  resources :users, only: [:edit, :destroy]
 
   resources :reports, only: :index
 end
