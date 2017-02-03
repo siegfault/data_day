@@ -27,8 +27,8 @@ gem 'jbuilder'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc'
 
-# Use ActiveModel has_secure_password
-gem 'bcrypt'
+gem 'dotenv-rails'
+gem'omniauth-google-oauth2'
 
 gem 'rails_12factor'
 
