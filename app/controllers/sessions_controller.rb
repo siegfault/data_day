@@ -7,15 +7,9 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_or_create_by!(email: request.env["omniauth.auth"][:info][:email])
-    if user
-      session[:user_id] = user.id
-      session[:token] = request.env["omniauth.auth"][:credentials][:token]
-      redirect_to actions_path
-    else
-      flash[:notice] = "Invalid Username or Password"
-      flash[:color]= "invalid"
-      render "login"  
-    end
+    session[:user_id] = user.id
+    session[:token] = request.env["omniauth.auth"][:credentials][:token]
+    redirect_to actions_path
   end
 
   def destroy
