@@ -38,7 +38,7 @@ GEM
       tzinfo (~> 1.1)
     arel (6.0.4)
     builder (3.2.3)
-    byebug (9.0.6)
+    byebug (10.0.0)
     chartkick (2.2.5)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
