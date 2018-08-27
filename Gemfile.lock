@@ -112,7 +112,7 @@ GEM
     omniauth-oauth2 (1.5.0)
       oauth2 (~> 1.1)
       omniauth (~> 1.2)
-    pg (1.0.0)
+    pg (1.1.0)
     rack (2.0.5)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
