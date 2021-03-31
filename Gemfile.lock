@@ -158,7 +158,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    sdoc (2.0.4)
+    sdoc (2.1.0)
       rdoc (>= 5.0)
     spring (2.0.2)
       activesupport (>= 4.2)
