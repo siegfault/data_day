@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby "2.3.1"
+ruby File.read('.ruby-version').strip
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.2.6'
@@ -28,6 +28,7 @@ gem 'jbuilder'
 gem 'sdoc'
 
 gem 'dotenv-rails'
+gem 'puma'
 gem'omniauth-google-oauth2'
 
 gem 'rails_12factor'
@@ -41,5 +42,6 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'listen'
 end
 
