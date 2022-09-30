@@ -152,6 +152,8 @@ GEM
     rdoc (6.2.0)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
+    sassc (2.1.0.pre3)
+      ffi (~> 1.9)
     sassc (2.1.0.pre3-x86_64-linux)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -191,6 +193,7 @@ GEM
     websocket-extensions (0.1.5)
 
 PLATFORMS
+  ruby
   x86_64-linux
 
 DEPENDENCIES
@@ -213,7 +216,7 @@ DEPENDENCIES
   web-console
 
 RUBY VERSION
-   ruby 3.1.2p20
+   ruby 2.7.2p137
 
 BUNDLED WITH
    2.3.20
