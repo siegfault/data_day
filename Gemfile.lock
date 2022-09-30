@@ -115,6 +115,8 @@ GEM
       oauth2 (~> 1.4)
       omniauth (>= 1.9, < 3)
     pg (1.2.3)
+    psych (4.0.6)
+      stringio
     puma (5.6.5)
       nio4r (~> 2.0)
     rack (2.2.3)
@@ -155,7 +157,8 @@ GEM
     rb-fsevent (0.11.1)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    rdoc (6.2.0)
+    rdoc (6.4.0)
+      psych (>= 4.0.0)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.1.0.pre3)
@@ -168,7 +171,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    sdoc (2.2.0)
+    sdoc (2.4.0)
       rdoc (>= 5.0)
     spring (2.0.2)
       activesupport (>= 4.2)
@@ -179,6 +182,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    stringio (3.0.2)
     thor (1.1.0)
     thread_safe (0.3.6)
     tilt (2.0.9)
