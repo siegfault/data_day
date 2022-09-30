@@ -28,6 +28,7 @@ gem 'jbuilder'
 gem 'sdoc'
 
 gem 'dotenv-rails'
+gem 'puma'
 gem'omniauth-google-oauth2'
 
 gem 'rails_12factor'
