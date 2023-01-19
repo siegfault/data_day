@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby File.read('.ruby-version').strip
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '7.0.4'
+gem 'rails', '7.0.4.1'
 # Use pg as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
