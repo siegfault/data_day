@@ -155,7 +155,7 @@ GEM
     omniauth-oauth2 (1.8.0)
       oauth2 (>= 1.4, < 3)
       omniauth (~> 2.0)
-    pg (1.5.2)
+    pg (1.5.3)
     psych (5.1.0)
       stringio
     puma (6.2.2)
